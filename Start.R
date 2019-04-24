@@ -58,6 +58,26 @@ test <- agaricus.test
 # fit model
 bst <- xgboost(data = train$data, label = train$label, max.depth = 2, eta = 1, nrounds = 2,
                nthread = 2, objective = "binary:logistic")
+
+bstSparse <- xgboost(data = train$data, label = train$label, max.depth = 2, eta = 1,
+                     nthread = 2, nrounds = 2, objective = "binary:logistic")
+
+
+bstDense <- xgboost(data = as.matrix(train$data), label = train$label,
+                    max.depth = 2, eta = 1, nthread = 2, nrounds = 2,
+                    objective = "binary:logistic")
+
+
+
+
 # predict
 pred <- predict(bst, test$data)
 pred
+train
+sum(test$label - round(pred,digits = 0))/length(pred)
+test$label[1:100] - round(pred[1:100],digits = 0)
+
+
+
+
+
