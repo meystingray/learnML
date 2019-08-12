@@ -32,13 +32,6 @@ table(is.na(test))
 sapply(test, function(x) sum(is.na(x))/length(x))*100
 
 
-#check missing values
-table(is.na(train))
-sapply(train, function(x) sum(is.na(x))/length(x))*100
-
-table(is.na(test))
-sapply(test, function(x) sum(is.na(x))/length(x))*100
-
 
 imp1 <- impute(obj = train,target = "target",classes = list(integer=imputeMedian(), factor=imputeMode()))
 imp2 <- impute(obj = test,target = "target",classes = list(integer=imputeMedian(), factor=imputeMode()))
